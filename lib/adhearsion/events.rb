@@ -15,8 +15,8 @@ module Adhearsion
         instance.send method_name, *args, &block
       end
 
-      def respond_to_missing?(method_name)
-        instance.respond_to? method_name
+      def respond_to_missing?(method_name, include_private = false)
+        instance.respond_to? method_name, include_private
       end
 
       def instance
@@ -73,7 +73,7 @@ module Adhearsion
       register_handler method_name, *args, &block
     end
 
-    def respond_to_missing?(method_name)
+    def respond_to_missing?(method_name, include_private = false)
       instance_variable_defined?(:@handlers) && @handlers.has_key?(method_name)
     end
 
