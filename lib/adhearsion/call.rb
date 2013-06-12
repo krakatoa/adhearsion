@@ -356,7 +356,7 @@ module Adhearsion
     end
 
     # @private
-    class CommandRegistry < ThreadSafeArray
+    class CommandRegistry < Array
       def terminate
         hangup = Hangup.new
         each { |command| command.response = hangup if command.requested? }
